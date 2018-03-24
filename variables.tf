@@ -70,3 +70,8 @@ variable "autoscale_max_write_capacity" {
   default     = 20
   description = "DynamoDB autoscaling max write capacity"
 }
+
+variable "enabled" {
+  description = "Set to false to prevent the module from creating any resources"
+  default     = "true"
+}

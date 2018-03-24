@@ -43,6 +43,7 @@ module "dynamodb_autoscaler" {
 | `autoscale_max_read_capacity`    | `20`         | DynamoDB autoscaling max read capacity                                          | No       |
 | `autoscale_min_write_capacity`   | `5`          | DynamoDB autoscaling min write capacity                                         | No       |
 | `autoscale_max_write_capacity`   | `20`         | DynamoDB autoscaling max write capacity                                         | No       |
+| `enabled`                        | `true`       | Set to false to prevent the module from creating any resources                  | No       |
 
 
 
