@@ -126,7 +126,7 @@ resource "aws_appautoscaling_target" "write_target_index" {
   max_capacity       = "${var.autoscale_max_write_capacity}"
   min_capacity       = "${var.autoscale_min_write_capacity}"
   resource_id        = "table/${var.dynamodb_table_name}/index/${element(var.dynamodb_indexes, count.index)}"
-  scalable_dimension = "dynamodb:table:WriteCapacityUnits"
+  scalable_dimension = "dynamodb:index:WriteCapacityUnits"
   service_namespace  = "dynamodb"
 }
 
