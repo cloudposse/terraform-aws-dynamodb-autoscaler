@@ -14,6 +14,7 @@ module "dynamodb_autoscaler" {
   stage                        = "dev"
   name                         = "cluster"
   dynamodb_table_name          = "cp-dev-cluster-terraform-state-lock"
+  dynamodb_indexes             = [ "first-index", "second-index" ]
   dynamodb_table_arn           = "arn:aws:dynamodb:us-east-1:123456789012:table/cp-dev-cluster-terraform-state-lock"
   autoscale_write_target       = 10
   autoscale_read_target        = 10
@@ -33,6 +34,7 @@ module "dynamodb_autoscaler" {
 | `stage`                          | ``           | Stage (_e.g._ `prod`, `dev`, `staging`)                                         | Yes      |
 | `name`                           | ``           | Name  (_e.g._ `app` or `cluster`)                                               | Yes      |
 | `dynamodb_table_name`            | ``           | DynamoDB table name                                                             | Yes      |
+| `dynamodb_indexes`               | `[]`         | List of DynamoDB indexes                                                        | No       |
 | `dynamodb_table_arn`             | ``           | DynamoDB table ARN                                                              | Yes      |
 | `attributes`                     | `[]`         | Additional attributes (_e.g._ `policy` or `role`)                               | No       |
 | `tags`                           | `{}`         | Additional tags  (_e.g._ `map("BusinessUnit","XYZ")`                            | No       |

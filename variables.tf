@@ -41,6 +41,12 @@ variable "dynamodb_table_arn" {
   description = "DynamoDB table ARN"
 }
 
+variable "dynamodb_indexes" {
+  type        = "list"
+  description = "List of DynamoDB indexes"
+  default     = []
+}
+
 variable "autoscale_write_target" {
   default     = 10
   description = "The target value for DynamoDB write autoscaling"
