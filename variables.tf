@@ -16,19 +16,19 @@ variable "name" {
 variable "delimiter" {
   type        = "string"
   default     = "-"
-  description = "Delimiter to be used between `namespace`, `stage`, `name`, and `attributes`"
+  description = "Delimiter to be used between `namespace`, `stage`, `name` and `attributes`"
 }
 
 variable "attributes" {
   type        = "list"
   default     = []
-  description = "Additional attributes (e.g. `policy` or `role`)"
+  description = "Additional attributes (e.g. `1`)"
 }
 
 variable "tags" {
   type        = "map"
   default     = {}
-  description = "Additional tags (e.g. map('BusinessUnit`,`XYZ`)"
+  description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)"
 }
 
 variable "dynamodb_table_name" {
@@ -48,12 +48,12 @@ variable "dynamodb_indexes" {
 }
 
 variable "autoscale_write_target" {
-  default     = 10
+  default     = 50
   description = "The target value for DynamoDB write autoscaling"
 }
 
 variable "autoscale_read_target" {
-  default     = 10
+  default     = 50
   description = "The target value for DynamoDB read autoscaling"
 }
 
