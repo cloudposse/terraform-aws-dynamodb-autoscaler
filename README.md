@@ -16,8 +16,8 @@ module "dynamodb_autoscaler" {
   dynamodb_table_name          = "cp-dev-cluster-terraform-state-lock"
   dynamodb_indexes             = [ "first-index", "second-index" ]
   dynamodb_table_arn           = "arn:aws:dynamodb:us-east-1:123456789012:table/cp-dev-cluster-terraform-state-lock"
-  autoscale_write_target       = 10
-  autoscale_read_target        = 10
+  autoscale_write_target       = 50
+  autoscale_read_target        = 50
   autoscale_min_read_capacity  = 5
   autoscale_max_read_capacity  = 20
   autoscale_min_write_capacity = 5
@@ -36,11 +36,11 @@ module "dynamodb_autoscaler" {
 | `dynamodb_table_name`            | ``           | DynamoDB table name                                                             | Yes      |
 | `dynamodb_indexes`               | `[]`         | List of DynamoDB indexes                                                        | No       |
 | `dynamodb_table_arn`             | ``           | DynamoDB table ARN                                                              | Yes      |
-| `attributes`                     | `[]`         | Additional attributes (_e.g._ `policy` or `role`)                               | No       |
+| `attributes`                     | `[]`         | Additional attributes (_e.g._ `1`)                                              | No       |
 | `tags`                           | `{}`         | Additional tags  (_e.g._ `map("BusinessUnit","XYZ")`                            | No       |
-| `delimiter`                      | `-`          | Delimiter to be used between `namespace`, `stage`, `name`, and `attributes`     | No       |
-| `autoscale_write_target`         | `10`         | The target value for DynamoDB write autoscaling                                 | No       |
-| `autoscale_read_target`          | `10`         | The target value for DynamoDB read autoscaling                                  | No       |
+| `delimiter`                      | `-`          | Delimiter to be used between `namespace`, `stage`, `name` and `attributes`      | No       |
+| `autoscale_write_target`         | `50`         | The target value for DynamoDB write autoscaling                                 | No       |
+| `autoscale_read_target`          | `50`         | The target value for DynamoDB read autoscaling                                  | No       |
 | `autoscale_min_read_capacity`    | `5`          | DynamoDB autoscaling min read capacity                                          | No       |
 | `autoscale_max_read_capacity`    | `20`         | DynamoDB autoscaling max read capacity                                          | No       |
 | `autoscale_min_write_capacity`   | `5`          | DynamoDB autoscaling min write capacity                                         | No       |
@@ -119,8 +119,8 @@ or [hire us][hire] to help build your next cloud-platform.
   [community]: https://github.com/cloudposse/
   [hire]: http://cloudposse.com/contact/
 
-### Contributors
 
+## Contributors
 
 | [![Erik Osterman][erik_img]][erik_web]<br/>[Erik Osterman][erik_web] | [![Andriy Knysh][andriy_img]][andriy_web]<br/>[Andriy Knysh][andriy_web] |
 |-------------------------------------------------------|------------------------------------------------------------------|
