@@ -113,12 +113,12 @@ resource "aws_appautoscaling_policy" "read_policy" {
 }
 
 resource "aws_appautoscaling_policy" "read_policy_index" {
-  count              = "${var.enabled == "true" ? 1 : 0}"
-  name               = "DynamoDBReadCapacityUtilization:${aws_appautoscaling_target.read_target_index.resource_id}"
+  count              = "${var.enabled == "true" ? length(var.dynamodb_indexes) : 0}"
+  name               = "DynamoDBReadCapacityUtilization:${element(aws_appautoscaling_target.read_target_index.*.resource_id, count.index)}"
   policy_type        = "TargetTrackingScaling"
-  resource_id        = "${aws_appautoscaling_target.read_target_index.resource_id}"
-  scalable_dimension = "${aws_appautoscaling_target.read_target_index.scalable_dimension}"
-  service_namespace  = "${aws_appautoscaling_target.read_target_index.service_namespace}"
+  resource_id        = "${element(aws_appautoscaling_target.read_target_index.*.resource_id, count.index)}"
+  scalable_dimension = "${element(aws_appautoscaling_target.read_target_index.*.scalable_dimension, count.index)}"
+  service_namespace  = "${element(aws_appautoscaling_target.read_target_index.*.service_namespace, count.index)}"
 
   target_tracking_scaling_policy_configuration {
     predefined_metric_specification {
@@ -165,12 +165,12 @@ resource "aws_appautoscaling_policy" "write_policy" {
 }
 
 resource "aws_appautoscaling_policy" "write_policy_index" {
-  count              = "${var.enabled == "true" ? 1 : 0}"
-  name               = "DynamoDBWriteCapacityUtilization:${aws_appautoscaling_target.write_target_index.resource_id}"
+  count              = "${var.enabled == "true" ? length(var.dynamodb_indexes) : 0}"
+  name               = "DynamoDBWriteCapacityUtilization:${element(aws_appautoscaling_target.write_target_index.*.resource_id, count.index)}"
   policy_type        = "TargetTrackingScaling"
-  resource_id        = "${aws_appautoscaling_target.write_target_index.resource_id}"
-  scalable_dimension = "${aws_appautoscaling_target.write_target_index.scalable_dimension}"
-  service_namespace  = "${aws_appautoscaling_target.write_target_index.service_namespace}"
+  resource_id        = "${element(aws_appautoscaling_target.write_target_index.*.resource_id, count.index)}"
+  scalable_dimension = "${element(aws_appautoscaling_target.write_target_index.*.scalable_dimension, count.index)}"
+  service_namespace  = "${element(aws_appautoscaling_target.write_target_index.*.service_namespace, count.index)}"
 
   target_tracking_scaling_policy_configuration {
     predefined_metric_specification {
