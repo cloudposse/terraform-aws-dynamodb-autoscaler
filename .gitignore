@@ -6,3 +6,6 @@
 .terraform/
 .idea
 terraform-aws-dynamodb-autoscaler.iml
+
+.build-harness
+build-harness

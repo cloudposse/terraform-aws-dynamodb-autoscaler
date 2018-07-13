@@ -1,0 +1,74 @@
+---
+#
+# This is the canonical configuration for the `README.md`
+# Run `make readme` to rebuild the `README.md`
+#
+
+# Name of this project
+name: terraform-aws-dynamodb-autoscaler
+
+# Logo for this project
+#logo: docs/logo.png
+
+# License of this project
+license: "APACHE2"
+
+# Canonical GitHub repo
+github_repo: cloudposse/terraform-aws-dynamodb-autoscaler
+
+# Badges to display
+badges:
+  - name: "Build Status"
+    image: "https://travis-ci.org/cloudposse/terraform-aws-dynamodb-autoscaler.svg?branch=master"
+    url: "https://travis-ci.org/cloudposse/terraform-aws-dynamodb-autoscaler"
+  - name: "Latest Release"
+    image: "https://img.shields.io/github/release/cloudposse/terraform-aws-dynamodb-autoscaler.svg"
+    url: "https://github.com/cloudposse/terraform-aws-dynamodb-autoscaler/releases/latest"
+  - name: "Slack Community"
+    image: "https://slack.cloudposse.com/badge.svg"
+    url: "https://slack.cloudposse.com"
+
+related:
+  - name: "terraform-aws-dynamodb"
+    description: "Terraform module that implements AWS DynamoDB with support for AutoScaling"
+    url: "https://github.com/cloudposse/terraform-aws-dynamodb"
+  - name: "terraform-aws-tfstate-backend"
+    description: "Provision an S3 bucket to store terraform.tfstate file and a DynamoDB table to lock the state file to prevent concurrent modifications and state corruption"
+    url: "https://github.com/cloudposse/terraform-aws-tfstate-backend"
+
+# Short description of this project
+description: |-
+  Terraform module to provision DynamoDB autoscaler.
+
+  Autoscaler scales up/down the provisioned OPS for a DynamoDB table based on the load.
+
+# How to use this project
+usage: |-
+  ```hcl
+  module "dynamodb_autoscaler" {
+    source                       = "git::https://github.com/cloudposse/terraform-aws-dynamodb-autoscaler.git?ref=master"
+    namespace                    = "cp"
+    stage                        = "dev"
+    name                         = "cluster"
+    dynamodb_table_name          = "cp-dev-cluster-terraform-state-lock"
+    dynamodb_indexes             = [ "first-index", "second-index" ]
+    dynamodb_table_arn           = "arn:aws:dynamodb:us-east-1:123456789012:table/cp-dev-cluster-terraform-state-lock"
+    autoscale_write_target       = 50
+    autoscale_read_target        = 50
+    autoscale_min_read_capacity  = 5
+    autoscale_max_read_capacity  = 20
+    autoscale_min_write_capacity = 5
+    autoscale_max_write_capacity = 20
+  }
+  ```
+
+include:
+  - "docs/targets.md"
+  - "docs/terraform.md"
+
+# Contributors to this project
+contributors:
+  - name: "Andriy Knysh"
+    github: "aknysh"
+  - name: "Michele Cantelli"
+    github: "emmekappa"
