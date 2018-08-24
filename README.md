@@ -31,12 +31,12 @@ It's 100% Open Source and licensed under the [APACHE2](LICENSE).
 ```hcl
 module "dynamodb_autoscaler" {
   source                       = "git::https://github.com/cloudposse/terraform-aws-dynamodb-autoscaler.git?ref=master"
-  namespace                    = "cp"
+  namespace                    = "eg"
   stage                        = "dev"
   name                         = "cluster"
-  dynamodb_table_name          = "cp-dev-cluster-terraform-state-lock"
+  dynamodb_table_name          = "eg-dev-cluster-terraform-state-lock"
   dynamodb_indexes             = [ "first-index", "second-index" ]
-  dynamodb_table_arn           = "arn:aws:dynamodb:us-east-1:123456789012:table/cp-dev-cluster-terraform-state-lock"
+  dynamodb_table_arn           = "arn:aws:dynamodb:us-east-1:123456789012:table/eg-dev-cluster-terraform-state-lock"
   autoscale_write_target       = 50
   autoscale_read_target        = 50
   autoscale_min_read_capacity  = 5
@@ -55,8 +55,9 @@ module "dynamodb_autoscaler" {
 ```
 Available targets:
 
-  help                                This help screen
+  help                                Help screen
   help/all                            Display help for all targets
+  help/short                          This help short screen
   lint                                Lint terraform code
 
 ```
@@ -78,7 +79,7 @@ Available targets:
 | dynamodb_table_name | DynamoDB table name | string | - | yes |
 | enabled | Set to false to prevent the module from creating any resources | string | `true` | no |
 | name | Name  (e.g. `app` or `cluster`) | string | - | yes |
-| namespace | Namespace (e.g. `cp` or `cloudposse`) | string | - | yes |
+| namespace | Namespace (e.g. `eg` or `cp`) | string | - | yes |
 | stage | Stage (e.g. `prod`, `dev`, `staging`, `infra`) | string | - | yes |
 | tags | Additional tags (e.g. map(`BusinessUnit`,`XYZ`) | map | `<map>` | no |
 

@@ -16,7 +16,7 @@
 | dynamodb_table_name | DynamoDB table name | string | - | yes |
 | enabled | Set to false to prevent the module from creating any resources | string | `true` | no |
 | name | Name  (e.g. `app` or `cluster`) | string | - | yes |
-| namespace | Namespace (e.g. `cp` or `cloudposse`) | string | - | yes |
+| namespace | Namespace (e.g. `eg` or `cp`) | string | - | yes |
 | stage | Stage (e.g. `prod`, `dev`, `staging`, `infra`) | string | - | yes |
 | tags | Additional tags (e.g. map(`BusinessUnit`,`XYZ`) | map | `<map>` | no |
 
