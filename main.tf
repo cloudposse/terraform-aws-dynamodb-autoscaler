@@ -1,14 +1,3 @@
-module "default_label" {
-  source     = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.3.3"
-  namespace  = "${var.namespace}"
-  stage      = "${var.stage}"
-  name       = "${var.name}"
-  delimiter  = "${var.delimiter}"
-  attributes = "${var.attributes}"
-  tags       = "${var.tags}"
-  enabled    = "${var.enabled}"
-}
-
 data "aws_iam_policy_document" "assume_role" {
   statement {
     sid = ""
@@ -28,7 +17,7 @@ data "aws_iam_policy_document" "assume_role" {
 
 resource "aws_iam_role" "autoscaler" {
   count              = "${var.enabled == "true" ? 1 : 0}"
-  name               = "${module.default_label.id}${var.delimiter}autoscaler"
+  name               = "${var.name}-autoscaler"
   assume_role_policy = "${data.aws_iam_policy_document.assume_role.json}"
 }
 
@@ -49,7 +38,7 @@ data "aws_iam_policy_document" "autoscaler" {
 
 resource "aws_iam_role_policy" "autoscaler" {
   count  = "${var.enabled == "true" ? 1 : 0}"
-  name   = "${module.default_label.id}${var.delimiter}autoscaler${var.delimiter}dynamodb"
+  name   = "${var.name}-autoscaler"
   role   = "${join("", aws_iam_role.autoscaler.*.id)}"
   policy = "${data.aws_iam_policy_document.autoscaler.json}"
 }
@@ -72,7 +61,7 @@ data "aws_iam_policy_document" "autoscaler_cloudwatch" {
 
 resource "aws_iam_role_policy" "autoscaler_cloudwatch" {
   count  = "${var.enabled == "true" ? 1 : 0}"
-  name   = "${module.default_label.id}${var.delimiter}autoscaler${var.delimiter}cloudwatch"
+  name   = "${var.name}-cloudwatch"
   role   = "${join("", aws_iam_role.autoscaler.*.id)}"
   policy = "${data.aws_iam_policy_document.autoscaler_cloudwatch.json}"
 }
