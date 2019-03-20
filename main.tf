@@ -30,6 +30,7 @@ resource "aws_iam_role" "autoscaler" {
   count              = "${var.enabled == "true" ? 1 : 0}"
   name               = "${module.default_label.id}${var.delimiter}autoscaler"
   assume_role_policy = "${data.aws_iam_policy_document.assume_role.json}"
+  tags               = "${module.default_label.tags}"
 }
 
 data "aws_iam_policy_document" "autoscaler" {
