@@ -53,3 +53,8 @@ variable "enabled" {
   description = "Set to false to prevent the module from creating any resources"
   default     = "true"
 }
+
+variable "aws_region" {
+  description = "Region into which the resource will be created"
+  default     = "eu-west-2"
+}

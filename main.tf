@@ -1,3 +1,8 @@
+provider "aws" {
+  alias  = "custom"
+  region = "${var.aws_region}"
+}
+
 data "aws_iam_policy_document" "assume_role" {
   statement {
     sid = ""
@@ -67,6 +72,7 @@ resource "aws_iam_role_policy" "autoscaler_cloudwatch" {
 }
 
 resource "aws_appautoscaling_target" "read_target" {
+  provider           = "aws.custom"
   count              = "${var.enabled == "true" ? 1 : 0}"
   max_capacity       = "${var.autoscale_max_read_capacity}"
   min_capacity       = "${var.autoscale_min_read_capacity}"
@@ -76,6 +82,7 @@ resource "aws_appautoscaling_target" "read_target" {
 }
 
 resource "aws_appautoscaling_target" "read_target_index" {
+  provider           = "aws.custom"
   count              = "${var.enabled == "true" ? length(var.dynamodb_indexes) : 0}"
   max_capacity       = "${var.autoscale_max_read_capacity}"
   min_capacity       = "${var.autoscale_min_read_capacity}"
@@ -85,6 +92,7 @@ resource "aws_appautoscaling_target" "read_target_index" {
 }
 
 resource "aws_appautoscaling_policy" "read_policy" {
+  provider           = "aws.custom"
   count              = "${var.enabled == "true" ? 1 : 0}"
   name               = "DynamoDBReadCapacityUtilization:${join("", aws_appautoscaling_target.read_target.*.resource_id)}"
   policy_type        = "TargetTrackingScaling"
@@ -102,6 +110,7 @@ resource "aws_appautoscaling_policy" "read_policy" {
 }
 
 resource "aws_appautoscaling_policy" "read_policy_index" {
+  provider           = "aws.custom"
   count              = "${var.enabled == "true" ? length(var.dynamodb_indexes) : 0}"
   name               = "DynamoDBReadCapacityUtilization:${element(aws_appautoscaling_target.read_target_index.*.resource_id, count.index)}"
   policy_type        = "TargetTrackingScaling"
@@ -119,6 +128,7 @@ resource "aws_appautoscaling_policy" "read_policy_index" {
 }
 
 resource "aws_appautoscaling_target" "write_target" {
+  provider           = "aws.custom"
   count              = "${var.enabled == "true" ? 1 : 0}"
   max_capacity       = "${var.autoscale_max_write_capacity}"
   min_capacity       = "${var.autoscale_min_write_capacity}"
@@ -128,6 +138,7 @@ resource "aws_appautoscaling_target" "write_target" {
 }
 
 resource "aws_appautoscaling_target" "write_target_index" {
+  provider           = "aws.custom"
   count              = "${var.enabled == "true" ? length(var.dynamodb_indexes) : 0}"
   max_capacity       = "${var.autoscale_max_write_capacity}"
   min_capacity       = "${var.autoscale_min_write_capacity}"
@@ -137,6 +148,7 @@ resource "aws_appautoscaling_target" "write_target_index" {
 }
 
 resource "aws_appautoscaling_policy" "write_policy" {
+  provider           = "aws.custom"
   count              = "${var.enabled == "true" ? 1 : 0}"
   name               = "DynamoDBWriteCapacityUtilization:${join("", aws_appautoscaling_target.write_target.*.resource_id)}"
   policy_type        = "TargetTrackingScaling"
@@ -154,6 +166,7 @@ resource "aws_appautoscaling_policy" "write_policy" {
 }
 
 resource "aws_appautoscaling_policy" "write_policy_index" {
+  provider           = "aws.custom"
   count              = "${var.enabled == "true" ? length(var.dynamodb_indexes) : 0}"
   name               = "DynamoDBWriteCapacityUtilization:${element(aws_appautoscaling_target.write_target_index.*.resource_id, count.index)}"
   policy_type        = "TargetTrackingScaling"
