@@ -1,48 +1,48 @@
 variable "namespace" {
-  type        = "string"
+  type        = string
   description = "Namespace (e.g. `eg` or `cp`)"
 }
 
 variable "stage" {
-  type        = "string"
+  type        = string
   description = "Stage (e.g. `prod`, `dev`, `staging`, `infra`)"
 }
 
 variable "name" {
-  type        = "string"
+  type        = string
   description = "Name  (e.g. `app` or `cluster`)"
 }
 
 variable "delimiter" {
-  type        = "string"
+  type        = string
   default     = "-"
   description = "Delimiter to be used between `namespace`, `stage`, `name` and `attributes`"
 }
 
 variable "attributes" {
-  type        = "list"
+  type        = list(string)
   default     = []
   description = "Additional attributes (e.g. `1`)"
 }
 
 variable "tags" {
-  type        = "map"
+  type        = map(string)
   default     = {}
   description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)"
 }
 
 variable "dynamodb_table_name" {
-  type        = "string"
+  type        = string
   description = "DynamoDB table name"
 }
 
 variable "dynamodb_table_arn" {
-  type        = "string"
+  type        = string
   description = "DynamoDB table ARN"
 }
 
 variable "dynamodb_indexes" {
-  type        = "list"
+  type        = list(string)
   description = "List of DynamoDB indexes"
   default     = []
 }
@@ -81,3 +81,4 @@ variable "enabled" {
   description = "Set to false to prevent the module from creating any resources"
   default     = "true"
 }
+
