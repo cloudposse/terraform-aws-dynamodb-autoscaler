@@ -3,7 +3,7 @@
 
 [![Cloud Posse][logo]](https://cpco.io/homepage)
 
-# terraform-aws-dynamodb-autoscaler [![Build Status](https://travis-ci.org/cloudposse/terraform-aws-dynamodb-autoscaler.svg?branch=master)](https://travis-ci.org/cloudposse/terraform-aws-dynamodb-autoscaler) [![Latest Release](https://img.shields.io/github/release/cloudposse/terraform-aws-dynamodb-autoscaler.svg)](https://github.com/cloudposse/terraform-aws-dynamodb-autoscaler/releases/latest) [![Slack Community](https://slack.cloudposse.com/badge.svg)](https://slack.cloudposse.com)
+# terraform-aws-dynamodb-autoscaler [![Codefresh Build Status](https://g.codefresh.io/api/badges/pipeline/cloudposse/terraform-modules%2Fterraform-aws-dynamodb-autoscaler?type=cf-1)](https://g.codefresh.io/public/accounts/cloudposse/pipelines/5d1ce746c7657379f0d1e5fd) [![Latest Release](https://img.shields.io/github/release/cloudposse/terraform-aws-dynamodb-autoscaler.svg)](https://github.com/cloudposse/terraform-aws-dynamodb-autoscaler/releases/latest) [![Slack Community](https://slack.cloudposse.com/badge.svg)](https://slack.cloudposse.com)
 
 
 Terraform module to provision DynamoDB autoscaler.
@@ -44,6 +44,11 @@ We literally have [*hundreds of terraform modules*][terraform_modules] that are 
 
 ## Usage
 
+
+**IMPORTANT:** The `master` branch is used in `source` just as an example. In your code, do not pin to `master` because there may be breaking changes between releases.
+Instead pin to the release tag (e.g. `?ref=tags/x.y.z`) of one of our [latest releases](https://github.com/cloudposse/terraform-aws-dynamodb-autoscaler/releases).
+
+
 ```hcl
 module "dynamodb_autoscaler" {
   source                       = "git::https://github.com/cloudposse/terraform-aws-dynamodb-autoscaler.git?ref=master"
@@ -51,7 +56,7 @@ module "dynamodb_autoscaler" {
   stage                        = "dev"
   name                         = "cluster"
   dynamodb_table_name          = "eg-dev-cluster-terraform-state-lock"
-  dynamodb_indexes             = [ "first-index", "second-index" ]
+  dynamodb_indexes             = ["first-index", "second-index"]
   dynamodb_table_arn           = "arn:aws:dynamodb:us-east-1:123456789012:table/eg-dev-cluster-terraform-state-lock"
   autoscale_write_target       = 50
   autoscale_read_target        = 50
@@ -77,27 +82,37 @@ Available targets:
   lint                                Lint terraform code
 
 ```
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| attributes | Additional attributes (e.g. `1`) | list | `<list>` | no |
-| autoscale_max_read_capacity | DynamoDB autoscaling max read capacity | string | `20` | no |
-| autoscale_max_write_capacity | DynamoDB autoscaling max write capacity | string | `20` | no |
-| autoscale_min_read_capacity | DynamoDB autoscaling min read capacity | string | `5` | no |
-| autoscale_min_write_capacity | DynamoDB autoscaling min write capacity | string | `5` | no |
-| autoscale_read_target | The target value for DynamoDB read autoscaling | string | `50` | no |
-| autoscale_write_target | The target value for DynamoDB write autoscaling | string | `50` | no |
+| attributes | Additional attributes (e.g. `1`) | list(string) | `<list>` | no |
+| autoscale_max_read_capacity | DynamoDB autoscaling max read capacity | number | `20` | no |
+| autoscale_max_write_capacity | DynamoDB autoscaling max write capacity | number | `20` | no |
+| autoscale_min_read_capacity | DynamoDB autoscaling min read capacity | number | `5` | no |
+| autoscale_min_write_capacity | DynamoDB autoscaling min write capacity | number | `5` | no |
+| autoscale_read_target | The target value for DynamoDB read autoscaling | number | `50` | no |
+| autoscale_write_target | The target value for DynamoDB write autoscaling | number | `50` | no |
 | delimiter | Delimiter to be used between `namespace`, `stage`, `name` and `attributes` | string | `-` | no |
-| dynamodb_indexes | List of DynamoDB indexes | list | `<list>` | no |
+| dynamodb_indexes | List of DynamoDB indexes | list(string) | `<list>` | no |
 | dynamodb_table_arn | DynamoDB table ARN | string | - | yes |
 | dynamodb_table_name | DynamoDB table name | string | - | yes |
-| enabled | Set to false to prevent the module from creating any resources | string | `true` | no |
+| enabled | Set to false to prevent the module from creating any resources | bool | `true` | no |
 | name | Name  (e.g. `app` or `cluster`) | string | - | yes |
-| namespace | Namespace (e.g. `eg` or `cp`) | string | - | yes |
-| stage | Stage (e.g. `prod`, `dev`, `staging`, `infra`) | string | - | yes |
-| tags | Additional tags (e.g. map(`BusinessUnit`,`XYZ`) | map | `<map>` | no |
+| namespace | Namespace (e.g. `eg` or `cp`) | string | `` | no |
+| stage | Stage (e.g. `prod`, `dev`, `staging`, `infra`) | string | `` | no |
+| tags | Additional tags (e.g. map(`BusinessUnit`,`XYZ`) | map(string) | `<map>` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| appautoscaling_read_target_id | Appautoscaling read target ID |
+| appautoscaling_read_target_index_id | Appautoscaling read target index ID |
+| appautoscaling_write_target_id | Appautoscaling write target ID |
+| appautoscaling_write_target_index_id | Appautoscaling write target index ID |
+| autoscaler_iam_role_arn | Autoscaler IAM Role ARN |
+| autoscaler_iam_role_id | Autoscaler IAM Role ID |
 
 
 
@@ -180,7 +195,7 @@ In general, PRs are welcome. We follow the typical "fork-and-pull" Git workflow.
 
 ## Copyright
 
-Copyright © 2017-2018 [Cloud Posse, LLC](https://cpco.io/copyright)
+Copyright © 2017-2019 [Cloud Posse, LLC](https://cpco.io/copyright)
 
 
 
@@ -235,9 +250,11 @@ Check out [our other projects][github], [follow us on twitter][twitter], [apply 
 
 ### Contributors
 
-|  [![Andriy Knysh][aknysh_avatar]][aknysh_homepage]<br/>[Andriy Knysh][aknysh_homepage] | [![Michele Cantelli][emmekappa_avatar]][emmekappa_homepage]<br/>[Michele Cantelli][emmekappa_homepage] |
-|---|---|
+|  [![Erik Osterman][osterman_avatar]][osterman_homepage]<br/>[Erik Osterman][osterman_homepage] | [![Andriy Knysh][aknysh_avatar]][aknysh_homepage]<br/>[Andriy Knysh][aknysh_homepage] | [![Michele Cantelli][emmekappa_avatar]][emmekappa_homepage]<br/>[Michele Cantelli][emmekappa_homepage] |
+|---|---|---|
 
+  [osterman_homepage]: https://github.com/osterman
+  [osterman_avatar]: https://github.com/osterman.png?size=150
   [aknysh_homepage]: https://github.com/aknysh
   [aknysh_avatar]: https://github.com/aknysh.png?size=150
   [emmekappa_homepage]: https://github.com/emmekappa
