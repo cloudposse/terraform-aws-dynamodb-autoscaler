@@ -250,8 +250,8 @@ Check out [our other projects][github], [follow us on twitter][twitter], [apply 
 
 ### Contributors
 
-|  [![Erik Osterman][osterman_avatar]][osterman_homepage]<br/>[Erik Osterman][osterman_homepage] | [![Andriy Knysh][aknysh_avatar]][aknysh_homepage]<br/>[Andriy Knysh][aknysh_homepage] | [![Michele Cantelli][emmekappa_avatar]][emmekappa_homepage]<br/>[Michele Cantelli][emmekappa_homepage] |
-|---|---|---|
+|  [![Erik Osterman][osterman_avatar]][osterman_homepage]<br/>[Erik Osterman][osterman_homepage] | [![Andriy Knysh][aknysh_avatar]][aknysh_homepage]<br/>[Andriy Knysh][aknysh_homepage] | [![Michele Cantelli][emmekappa_avatar]][emmekappa_homepage]<br/>[Michele Cantelli][emmekappa_homepage] | [![Maarten van der Hoef][maartenvanderhoef_avatar]][maartenvanderhoef_homepage]<br/>[Maarten van der Hoef][maartenvanderhoef_homepage] |
+|---|---|---|---|
 
   [osterman_homepage]: https://github.com/osterman
   [osterman_avatar]: https://github.com/osterman.png?size=150
@@ -259,6 +259,8 @@ Check out [our other projects][github], [follow us on twitter][twitter], [apply 
   [aknysh_avatar]: https://github.com/aknysh.png?size=150
   [emmekappa_homepage]: https://github.com/emmekappa
   [emmekappa_avatar]: https://github.com/emmekappa.png?size=150
+  [maartenvanderhoef_homepage]: https://github.com/maartenvanderhoef
+  [maartenvanderhoef_avatar]: https://github.com/maartenvanderhoef.png?size=150
 
 
 
