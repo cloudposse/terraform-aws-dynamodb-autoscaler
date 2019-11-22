@@ -1,20 +1,20 @@
 variable "name" {
-  type        = "string"
+  type        = string
   description = "Name  (e.g. `app` or `cluster`)"
 }
 
 variable "dynamodb_table_name" {
-  type        = "string"
+  type        = string
   description = "DynamoDB table name"
 }
 
 variable "dynamodb_table_arn" {
-  type        = "string"
+  type        = string
   description = "DynamoDB table ARN"
 }
 
 variable "dynamodb_indexes" {
-  type        = "list"
+  type        = list(string)
   description = "List of DynamoDB indexes"
   default     = []
 }
@@ -58,3 +58,4 @@ variable "aws_region" {
   description = "Region into which the resource will be created"
   default     = "eu-west-2"
 }
+
