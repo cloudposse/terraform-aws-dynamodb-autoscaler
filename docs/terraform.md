@@ -11,7 +11,6 @@
 | autoscale_write_target | The target value for DynamoDB write autoscaling | number | `50` | no |
 | delimiter | Delimiter to be used between `namespace`, `environment`, `stage`, `name` and `attributes` | string | `-` | no |
 | dynamodb_indexes | List of DynamoDB indexes | list(string) | `<list>` | no |
-| dynamodb_table_arn | DynamoDB table ARN | string | - | yes |
 | dynamodb_table_name | DynamoDB table name | string | - | yes |
 | enabled | Set to false to prevent the module from creating any resources | bool | `true` | no |
 | environment | Environment, e.g. 'prod', 'staging', 'dev', 'pre-prod', 'UAT' | string | `` | no |

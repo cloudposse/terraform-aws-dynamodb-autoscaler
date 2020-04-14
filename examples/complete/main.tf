@@ -8,7 +8,6 @@ module "dynamodb_autoscaler" {
   stage                        = var.stage
   name                         = var.name
   dynamodb_table_name          = ""
-  dynamodb_table_arn           = ""
   autoscale_read_target        = var.autoscale_read_target
   autoscale_min_read_capacity  = var.autoscale_min_read_capacity
   autoscale_max_read_capacity  = var.autoscale_max_read_capacity

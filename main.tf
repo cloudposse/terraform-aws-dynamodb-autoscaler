@@ -10,6 +10,10 @@ module "default_label" {
   enabled     = var.enabled
 }
 
+data "aws_region" "current" {}
+data "aws_caller_identity" "current" {}
+data "aws_partition" "current" {}
+
 data "aws_iam_policy_document" "assume_role" {
   statement {
     sid = ""
@@ -43,7 +47,9 @@ data "aws_iam_policy_document" "autoscaler" {
       "dynamodb:UpdateTable"
     ]
 
-    resources = [var.dynamodb_table_arn]
+    resources = [
+      "arn:${data.aws_partition.current.partition}:dynamodb:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:table/${var.dynamodb_table_name}"
+    ]
 
     effect = "Allow"
   }

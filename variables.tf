@@ -51,11 +51,6 @@ variable "dynamodb_table_name" {
   description = "DynamoDB table name"
 }
 
-variable "dynamodb_table_arn" {
-  type        = string
-  description = "DynamoDB table ARN"
-}
-
 variable "dynamodb_indexes" {
   type        = list(string)
   description = "List of DynamoDB indexes"

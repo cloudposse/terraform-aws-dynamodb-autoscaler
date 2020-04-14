@@ -69,7 +69,6 @@ usage: |-
     name                         = "cluster"
     dynamodb_table_name          = "eg-dev-cluster-terraform-state-lock"
     dynamodb_indexes             = ["first-index", "second-index"]
-    dynamodb_table_arn           = "arn:aws:dynamodb:us-east-1:123456789012:table/eg-dev-cluster-terraform-state-lock"
     autoscale_write_target       = 50
     autoscale_read_target        = 50
     autoscale_min_read_capacity  = 5
