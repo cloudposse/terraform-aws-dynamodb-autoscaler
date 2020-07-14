@@ -1,4 +1,3 @@
----
 #
 # This is the canonical configuration for the `README.md`
 # Run `make readme` to rebuild the `README.md`
@@ -6,7 +5,6 @@
 
 # Name of this project
 name: terraform-aws-dynamodb-autoscaler
-
 # Tags of this project
 tags:
   - aws
@@ -19,32 +17,24 @@ tags:
   - dynamodb-database
   - iops
   - table
-
 # Categories of this project
 categories:
   - terraform-modules/databases
-
 # Logo for this project
 #logo: docs/logo.png
 
 # License of this project
 license: "APACHE2"
-
 # Canonical GitHub repo
 github_repo: cloudposse/terraform-aws-dynamodb-autoscaler
-
 # Badges to display
 badges:
-  - name: "Codefresh Build Status"
-    image: "https://g.codefresh.io/api/badges/pipeline/cloudposse/terraform-modules%2Fterraform-aws-dynamodb-autoscaler?type=cf-1"
-    url: "https://g.codefresh.io/public/accounts/cloudposse/pipelines/5d1ce746c7657379f0d1e5fd"
   - name: "Latest Release"
     image: "https://img.shields.io/github/release/cloudposse/terraform-aws-dynamodb-autoscaler.svg"
     url: "https://github.com/cloudposse/terraform-aws-dynamodb-autoscaler/releases/latest"
   - name: "Slack Community"
     image: "https://slack.cloudposse.com/badge.svg"
     url: "https://slack.cloudposse.com"
-
 related:
   - name: "terraform-aws-dynamodb"
     description: "Terraform module that implements AWS DynamoDB with support for AutoScaling"
@@ -52,13 +42,11 @@ related:
   - name: "terraform-aws-tfstate-backend"
     description: "Provision an S3 bucket to store terraform.tfstate file and a DynamoDB table to lock the state file to prevent concurrent modifications and state corruption"
     url: "https://github.com/cloudposse/terraform-aws-tfstate-backend"
-
 # Short description of this project
 description: |-
   Terraform module to provision DynamoDB autoscaler.
 
   Autoscaler scales up/down the provisioned OPS for a DynamoDB table based on the load.
-
 # How to use this project
 usage: |-
   ```hcl
@@ -78,11 +66,9 @@ usage: |-
     autoscale_max_write_capacity = 20
   }
   ```
-
 include:
   - "docs/targets.md"
   - "docs/terraform.md"
-
 # Contributors to this project
 contributors:
   - name: "Erik Osterman"
