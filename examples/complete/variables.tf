@@ -8,6 +8,12 @@ variable "namespace" {
   description = "Namespace (e.g. `eg` or `cp`)"
 }
 
+variable "environment" {
+  type        = string
+  default     = ""
+  description = "Environment, e.g. 'prod', 'staging', 'dev', 'pre-prod', 'UAT'"
+}
+
 variable "stage" {
   type        = string
   description = "Stage (e.g. `prod`, `dev`, `staging`, `infra`)"
@@ -16,6 +22,18 @@ variable "stage" {
 variable "name" {
   type        = string
   description = "Name  (e.g. `app` or `cluster`)"
+}
+
+variable "attributes" {
+  type        = list(string)
+  default     = []
+  description = "Additional attributes (e.g. `1`)"
+}
+
+variable "tags" {
+  type        = map(string)
+  default     = {}
+  description = "Additional tags (e.g. `map('BusinessUnit','XYZ')`"
 }
 
 variable "autoscale_write_target" {
