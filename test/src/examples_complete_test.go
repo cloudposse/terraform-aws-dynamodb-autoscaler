@@ -39,11 +39,25 @@ func TestExamplesComplete(t *testing.T) {
 	// Run `terraform output` to get the value of an output variable
 	tableName := terraform.Output(t, terraformOptions, "table_name")
 	// Verify we're getting back the outputs we expect
-	assert.Equal(t, "eg-test-dynamodb-autoscaler"+randId, tableName)
+	assert.Equal(t, "eg-test-dynamodb-autoscaler-"+randId, tableName)
 
 	// Run `terraform output` to get the value of an output variable
 	tableArn := terraform.Output(t, terraformOptions, "table_arn")
 	// Verify we're getting back the outputs we expect
-	assert.Contains(t, tableArn, "table/eg-test-dynamodb-autoscaler"+randId)
+	assert.Contains(t, tableArn, "table/eg-test-dynamodb-autoscaler-"+randId)
 
+	// Run `terraform output` to get the value of an output variable
+	appautoscalingReadTargetId := terraform.Output(t, terraformOptions, "appautoscaling_read_target_id")
+	// Verify we're getting back the outputs we expect
+	assert.Equal(t, "table/eg-test-dynamodb-autoscaler-"+randId, appautoscalingReadTargetId)
+
+	// Run `terraform output` to get the value of an output variable
+	appautoscalingWriteTargetId := terraform.Output(t, terraformOptions, "appautoscaling_write_target_id")
+	// Verify we're getting back the outputs we expect
+	assert.Equal(t, "table/eg-test-dynamodb-autoscaler-"+randId, appautoscalingWriteTargetId)
+
+	// Run `terraform output` to get the value of an output variable
+	autoscalerIamRoleArn := terraform.Output(t, terraformOptions, "autoscaler_iam_role_arn")
+	// Verify we're getting back the outputs we expect
+	assert.Contains(t, autoscalerIamRoleArn, "eg-test-dynamodb-autoscaler-"+randId)
 }
