@@ -3,7 +3,8 @@ provider "aws" {
 }
 
 module "dynamodb_table" {
-  source      = "git::https://github.com/cloudposse/terraform-aws-dynamodb.git?ref=tags/0.17.1"
+  source      = "cloudposse/dynamodb/aws"
+  version     = "0.17.1"
   namespace   = var.namespace
   environment = var.environment
   stage       = var.stage
