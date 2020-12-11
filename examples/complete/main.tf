@@ -3,7 +3,8 @@ provider "aws" {
 }
 
 module "dynamodb_table" {
-  source      = "git::https://github.com/cloudposse/terraform-aws-dynamodb.git?ref=tags/0.17.1"
+  source      = "cloudposse/dynamodb/aws"
+  version     = "0.17.1"
   namespace   = var.namespace
   environment = var.environment
   stage       = var.stage
@@ -66,13 +67,8 @@ module "dynamodb_table" {
 }
 
 module "dynamodb_autoscaler" {
-  source                       = "../../"
-  namespace                    = var.namespace
-  environment                  = var.environment
-  stage                        = var.stage
-  name                         = var.name
-  attributes                   = var.attributes
-  tags                         = var.tags
+  source = "../../"
+
   dynamodb_table_name          = module.dynamodb_table.table_name
   dynamodb_table_arn           = module.dynamodb_table.table_arn
   autoscale_read_target        = var.autoscale_read_target
@@ -81,4 +77,6 @@ module "dynamodb_autoscaler" {
   autoscale_write_target       = var.autoscale_write_target
   autoscale_min_write_capacity = var.autoscale_min_write_capacity
   autoscale_max_write_capacity = var.autoscale_max_write_capacity
+
+  context = module.this.context
 }

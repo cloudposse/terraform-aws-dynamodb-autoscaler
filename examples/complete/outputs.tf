@@ -28,16 +28,6 @@ output "table_stream_label" {
   description = "DynamoDB table stream label"
 }
 
-output "autoscaler_iam_role_id" {
-  value       = module.dynamodb_autoscaler.autoscaler_iam_role_id
-  description = "Autoscaler IAM Role ID"
-}
-
-output "autoscaler_iam_role_arn" {
-  value       = module.dynamodb_autoscaler.autoscaler_iam_role_arn
-  description = "Autoscaler IAM Role ARN"
-}
-
 output "appautoscaling_read_target_id" {
   value       = module.dynamodb_autoscaler.appautoscaling_read_target_id
   description = "Appautoscaling read target ID"

@@ -51,7 +51,9 @@ description: |-
 usage: |-
   ```hcl
   module "dynamodb_autoscaler" {
-    source                       = "git::https://github.com/cloudposse/terraform-aws-dynamodb-autoscaler.git?ref=master"
+    source = "cloudposse/dynamodb-autoscaler/aws"
+    # Cloud Posse recommends pinning every module to a specific version
+    # version     = "x.x.x"
     namespace                    = "eg"
     stage                        = "dev"
     name                         = "cluster"
