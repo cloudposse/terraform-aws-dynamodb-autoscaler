@@ -67,7 +67,7 @@ module "dynamodb_table" {
 }
 
 module "dynamodb_autoscaler" {
-  source                       = "../../"
+  source = "../../"
 
   dynamodb_table_name          = module.dynamodb_table.table_name
   dynamodb_table_arn           = module.dynamodb_table.table_arn

@@ -164,8 +164,6 @@ Available targets:
 | appautoscaling\_read\_target\_index\_id | Appautoscaling read target index ID |
 | appautoscaling\_write\_target\_id | Appautoscaling write target ID |
 | appautoscaling\_write\_target\_index\_id | Appautoscaling write target index ID |
-| autoscaler\_iam\_role\_arn | Autoscaler IAM Role ARN |
-| autoscaler\_iam\_role\_id | Autoscaler IAM Role ID |
 
 <!-- markdownlint-restore -->
 

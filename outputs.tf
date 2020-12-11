@@ -1,13 +1,3 @@
-output "autoscaler_iam_role_id" {
-  value       = join("", aws_iam_role.autoscaler.*.id)
-  description = "Autoscaler IAM Role ID"
-}
-
-output "autoscaler_iam_role_arn" {
-  value       = join("", aws_iam_role.autoscaler.*.arn)
-  description = "Autoscaler IAM Role ARN"
-}
-
 output "appautoscaling_read_target_id" {
   value       = join("", aws_appautoscaling_target.read_target.*.id)
   description = "Appautoscaling read target ID"
