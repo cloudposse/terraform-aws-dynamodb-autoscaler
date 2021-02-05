@@ -4,7 +4,7 @@ provider "aws" {
 
 module "dynamodb_table" {
   source      = "cloudposse/dynamodb/aws"
-  version     = "0.17.1"
+  version     = "0.25.0"
   namespace   = var.namespace
   environment = var.environment
   stage       = var.stage
