@@ -6,6 +6,9 @@
 .terraform/
 .idea
 terraform-aws-dynamodb-autoscaler.iml
+**/.terraform.lock.hcl
 
 .build-harness
 build-harness
+
+**/test.log

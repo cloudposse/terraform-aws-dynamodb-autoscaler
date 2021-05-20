@@ -47,12 +47,12 @@ func TestExamplesComplete(t *testing.T) {
 	assert.Contains(t, tableArn, "table/eg-test-dynamodb-autoscaler-"+randId)
 
 	// Run `terraform output` to get the value of an output variable
-	appautoscalingReadTargetId := terraform.Output(t, terraformOptions, "appautoscaling_read_target_id")
+	appautoscalingReadTargetId := terraform.Output(t, terraformOptions, "appautoscaling_read_policy_arn")
 	// Verify we're getting back the outputs we expect
-	assert.Equal(t, "table/eg-test-dynamodb-autoscaler-"+randId, appautoscalingReadTargetId)
+	assert.Contains(t, appautoscalingReadTargetId, "table/eg-test-dynamodb-autoscaler-"+randId)
 
 	// Run `terraform output` to get the value of an output variable
-	appautoscalingWriteTargetId := terraform.Output(t, terraformOptions, "appautoscaling_write_target_id")
+	appautoscalingWriteTargetId := terraform.Output(t, terraformOptions, "appautoscaling_write_policy_arn")
 	// Verify we're getting back the outputs we expect
-	assert.Equal(t, "table/eg-test-dynamodb-autoscaler-"+randId, appautoscalingWriteTargetId)
+	assert.Contains(t, appautoscalingWriteTargetId, "table/eg-test-dynamodb-autoscaler-"+randId)
 }

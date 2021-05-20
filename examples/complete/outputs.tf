@@ -28,22 +28,12 @@ output "table_stream_label" {
   description = "DynamoDB table stream label"
 }
 
-output "appautoscaling_read_target_id" {
-  value       = module.dynamodb_autoscaler.appautoscaling_read_target_id
+output "appautoscaling_read_policy_arn" {
+  value       = module.dynamodb_autoscaler.appautoscaling_read_policy_arn
   description = "Appautoscaling read target ID"
 }
 
-output "appautoscaling_read_target_index_id" {
-  value       = module.dynamodb_autoscaler.appautoscaling_read_target_index_id
-  description = "Appautoscaling read target index ID"
-}
-
-output "appautoscaling_write_target_id" {
-  value       = module.dynamodb_autoscaler.appautoscaling_write_target_id
+output "appautoscaling_write_policy_arn" {
+  value       = module.dynamodb_autoscaler.appautoscaling_write_policy_arn
   description = "Appautoscaling write target ID"
-}
-
-output "appautoscaling_write_target_index_id" {
-  value       = module.dynamodb_autoscaler.appautoscaling_write_target_index_id
-  description = "Appautoscaling write target index ID"
 }
