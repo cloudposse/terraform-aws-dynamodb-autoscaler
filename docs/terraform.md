@@ -46,9 +46,7 @@
 
 | Name | Description |
 |------|-------------|
-| appautoscaling\_read\_target\_id | Appautoscaling read target ID |
-| appautoscaling\_read\_target\_index\_id | Appautoscaling read target index ID |
-| appautoscaling\_write\_target\_id | Appautoscaling write target ID |
-| appautoscaling\_write\_target\_index\_id | Appautoscaling write target index ID |
+| appautoscaling\_read\_policy\_arn | Appautoscaling read policy ARN |
+| appautoscaling\_write\_policy\_arn | Appautoscaling write policy ARN |
 
 <!-- markdownlint-restore -->
