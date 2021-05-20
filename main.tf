@@ -18,7 +18,7 @@ resource "aws_appautoscaling_target" "read_target_index" {
 
 resource "aws_appautoscaling_policy" "read_policy" {
   count       = module.this.enabled ? 1 : 0
-  name        = "DynamoDBReadCapacityUtilization:${join("", aws_appautoscaling_target.read_target.*.resource_id)}"
+  name        = "DynamoDBReadCapacityUtilization:${join("", aws_appautoscaling_target.read_target.*.id)}"
   policy_type = "TargetTrackingScaling"
   resource_id = join("", aws_appautoscaling_target.read_target.*.resource_id)
 
@@ -37,7 +37,7 @@ resource "aws_appautoscaling_policy" "read_policy" {
 resource "aws_appautoscaling_policy" "read_policy_index" {
   for_each = toset(var.dynamodb_indexes)
 
-  name = "DynamoDBReadCapacityUtilization:${each.key}"
+  name = "DynamoDBReadCapacityUtilization:${aws_appautoscaling_target.read_target_index[each.key].id}"
 
   policy_type        = "TargetTrackingScaling"
   resource_id        = aws_appautoscaling_target.read_target_index[each.key].resource_id
@@ -73,7 +73,7 @@ resource "aws_appautoscaling_target" "write_target_index" {
 
 resource "aws_appautoscaling_policy" "write_policy" {
   count       = module.this.enabled ? 1 : 0
-  name        = "DynamoDBWriteCapacityUtilization:${join("", aws_appautoscaling_target.write_target.*.resource_id)}"
+  name        = "DynamoDBWriteCapacityUtilization:${join("", aws_appautoscaling_target.write_target.*.id)}"
   policy_type = "TargetTrackingScaling"
   resource_id = join("", aws_appautoscaling_target.write_target.*.resource_id)
 
@@ -92,7 +92,7 @@ resource "aws_appautoscaling_policy" "write_policy" {
 resource "aws_appautoscaling_policy" "write_policy_index" {
   for_each = toset(var.dynamodb_indexes)
 
-  name = "DynamoDBWriteCapacityUtilization:${each.key}"
+  name = "DynamoDBWriteCapacityUtilization:${aws_appautoscaling_target.write_target_index[each.key].id}"
 
   policy_type        = "TargetTrackingScaling"
   resource_id        = aws_appautoscaling_target.write_target_index[each.key].resource_id
