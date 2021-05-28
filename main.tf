@@ -8,7 +8,7 @@ resource "aws_appautoscaling_target" "read_target" {
 }
 
 resource "aws_appautoscaling_target" "read_target_index" {
-  for_each           = toset(var.dynamodb_indexes)
+  for_each           = module.this.enabled ? toset(var.dynamodb_indexes) : toset([])
   max_capacity       = var.autoscale_max_read_capacity
   min_capacity       = var.autoscale_min_read_capacity
   resource_id        = "table/${var.dynamodb_table_name}/index/${each.key}"
@@ -35,7 +35,7 @@ resource "aws_appautoscaling_policy" "read_policy" {
 }
 
 resource "aws_appautoscaling_policy" "read_policy_index" {
-  for_each = toset(var.dynamodb_indexes)
+  for_each = module.this.enabled ? toset(var.dynamodb_indexes) : toset([])
 
   name = "DynamoDBReadCapacityUtilization:${aws_appautoscaling_target.read_target_index[each.key].id}"
 
@@ -63,7 +63,7 @@ resource "aws_appautoscaling_target" "write_target" {
 }
 
 resource "aws_appautoscaling_target" "write_target_index" {
-  for_each           = toset(var.dynamodb_indexes)
+  for_each           = module.this.enabled ? toset(var.dynamodb_indexes) : toset([])
   max_capacity       = var.autoscale_max_write_capacity
   min_capacity       = var.autoscale_min_write_capacity
   resource_id        = "table/${var.dynamodb_table_name}/index/${each.key}"
@@ -90,7 +90,7 @@ resource "aws_appautoscaling_policy" "write_policy" {
 }
 
 resource "aws_appautoscaling_policy" "write_policy_index" {
-  for_each = toset(var.dynamodb_indexes)
+  for_each = module.this.enabled ? toset(var.dynamodb_indexes) : toset([])
 
   name = "DynamoDBWriteCapacityUtilization:${aws_appautoscaling_target.write_target_index[each.key].id}"
 
