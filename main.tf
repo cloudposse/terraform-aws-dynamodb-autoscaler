@@ -9,8 +9,8 @@ resource "aws_appautoscaling_target" "read_target" {
 
 resource "aws_appautoscaling_target" "read_target_index" {
   for_each           = module.this.enabled ? toset(var.dynamodb_indexes) : toset([])
-  max_capacity       = var.autoscale_max_read_capacity
-  min_capacity       = var.autoscale_min_read_capacity
+  max_capacity       = coalesce(var.autoscale_max_read_capacity_index, var.autoscale_max_read_capacity)
+  min_capacity       = coalesce(var.autoscale_min_read_capacity_index, var.autoscale_min_read_capacity) 
   resource_id        = "table/${var.dynamodb_table_name}/index/${each.key}"
   scalable_dimension = "dynamodb:index:ReadCapacityUnits"
   service_namespace  = "dynamodb"
@@ -49,7 +49,7 @@ resource "aws_appautoscaling_policy" "read_policy_index" {
       predefined_metric_type = "DynamoDBReadCapacityUtilization"
     }
 
-    target_value = var.autoscale_read_target
+    target_value = coalesce(var.autoscale_read_target_index, var.autoscale_read_target)
   }
 }
 
@@ -64,8 +64,8 @@ resource "aws_appautoscaling_target" "write_target" {
 
 resource "aws_appautoscaling_target" "write_target_index" {
   for_each           = module.this.enabled ? toset(var.dynamodb_indexes) : toset([])
-  max_capacity       = var.autoscale_max_write_capacity
-  min_capacity       = var.autoscale_min_write_capacity
+  max_capacity       = coalesce(var.autoscale_max_write_capacity_index, var.autoscale_max_write_capacity)
+  min_capacity       = coalesce(var.autoscale_min_write_capacity_index, var.autoscale_min_write_capacity)
   resource_id        = "table/${var.dynamodb_table_name}/index/${each.key}"
   scalable_dimension = "dynamodb:index:WriteCapacityUnits"
   service_namespace  = "dynamodb"
@@ -104,6 +104,6 @@ resource "aws_appautoscaling_policy" "write_policy_index" {
       predefined_metric_type = "DynamoDBWriteCapacityUtilization"
     }
 
-    target_value = var.autoscale_write_target
+    target_value = coalesce(var.autoscale_write_target_index, var.autoscale_write_target)
   }
 }
