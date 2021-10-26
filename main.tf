@@ -10,7 +10,7 @@ resource "aws_appautoscaling_target" "read_target" {
 resource "aws_appautoscaling_target" "read_target_index" {
   for_each           = module.this.enabled ? toset(var.dynamodb_indexes) : toset([])
   max_capacity       = coalesce(var.autoscale_max_read_capacity_index, var.autoscale_max_read_capacity)
-  min_capacity       = coalesce(var.autoscale_min_read_capacity_index, var.autoscale_min_read_capacity) 
+  min_capacity       = coalesce(var.autoscale_min_read_capacity_index, var.autoscale_min_read_capacity)
   resource_id        = "table/${var.dynamodb_table_name}/index/${each.key}"
   scalable_dimension = "dynamodb:index:ReadCapacityUnits"
   service_namespace  = "dynamodb"
