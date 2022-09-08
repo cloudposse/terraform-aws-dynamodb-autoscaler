@@ -85,3 +85,43 @@ variable "autoscale_max_write_capacity_index" {
   default     = null
   description = "DynamoDB autoscaling max write capacity of the index"
 }
+
+variable "autoscale_read_schedule" {
+  type = list(object({
+    schedule     = string
+    min_capacity = number
+    max_capacity = number
+  }))
+  description = "Provides an DynamoDB autoscaling scheduled action resource"
+  default     = []
+}
+
+variable "autoscale_read_schedule_index" {
+  type = list(object({
+    schedule     = string
+    min_capacity = number
+    max_capacity = number
+  }))
+  description = "Provides an DynamoDB autoscaling scheduled action resource for the index"
+  default     = []
+}
+
+variable "autoscale_write_schedule" {
+  type = list(object({
+    schedule     = string
+    min_capacity = number
+    max_capacity = number
+  }))
+  description = "Provides an DynamoDB autoscaling scheduled action resource"
+  default     = []
+}
+
+variable "autoscale_write_schedule_index" {
+  type = list(object({
+    schedule     = string
+    min_capacity = number
+    max_capacity = number
+  }))
+  description = "Provides an DynamoDB autoscaling scheduled action resource for the index"
+  default     = []
+}
