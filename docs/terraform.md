@@ -17,7 +17,11 @@
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_read_label"></a> [read\_label](#module\_read\_label) | cloudposse/label/null | 0.25.0 |
+| <a name="module_read_schedule_index"></a> [read\_schedule\_index](#module\_read\_schedule\_index) | ./schedule-index | n/a |
 | <a name="module_this"></a> [this](#module\_this) | cloudposse/label/null | 0.25.0 |
+| <a name="module_write_label"></a> [write\_label](#module\_write\_label) | cloudposse/label/null | 0.25.0 |
+| <a name="module_write_schedule_index"></a> [write\_schedule\_index](#module\_write\_schedule\_index) | ./schedule-index | n/a |
 
 ## Resources
 
@@ -27,6 +31,8 @@
 | [aws_appautoscaling_policy.read_policy_index](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/appautoscaling_policy) | resource |
 | [aws_appautoscaling_policy.write_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/appautoscaling_policy) | resource |
 | [aws_appautoscaling_policy.write_policy_index](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/appautoscaling_policy) | resource |
+| [aws_appautoscaling_scheduled_action.read_schedule](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/appautoscaling_scheduled_action) | resource |
+| [aws_appautoscaling_scheduled_action.write_schedule](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/appautoscaling_scheduled_action) | resource |
 | [aws_appautoscaling_target.read_target](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/appautoscaling_target) | resource |
 | [aws_appautoscaling_target.read_target_index](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/appautoscaling_target) | resource |
 | [aws_appautoscaling_target.write_target](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/appautoscaling_target) | resource |
@@ -46,8 +52,12 @@
 | <a name="input_autoscale_min_read_capacity_index"></a> [autoscale\_min\_read\_capacity\_index](#input\_autoscale\_min\_read\_capacity\_index) | DynamoDB autoscaling min read capacity of the index | `number` | `null` | no |
 | <a name="input_autoscale_min_write_capacity"></a> [autoscale\_min\_write\_capacity](#input\_autoscale\_min\_write\_capacity) | DynamoDB autoscaling min write capacity | `number` | `5` | no |
 | <a name="input_autoscale_min_write_capacity_index"></a> [autoscale\_min\_write\_capacity\_index](#input\_autoscale\_min\_write\_capacity\_index) | DynamoDB autoscaling min write capacity of the index | `number` | `null` | no |
+| <a name="input_autoscale_read_schedule"></a> [autoscale\_read\_schedule](#input\_autoscale\_read\_schedule) | Provides an DynamoDB autoscaling scheduled action resource | <pre>list(object({<br>    schedule     = string<br>    min_capacity = number<br>    max_capacity = number<br>  }))</pre> | `[]` | no |
+| <a name="input_autoscale_read_schedule_index"></a> [autoscale\_read\_schedule\_index](#input\_autoscale\_read\_schedule\_index) | Provides an DynamoDB autoscaling scheduled action resource for the index | <pre>list(object({<br>    schedule     = string<br>    min_capacity = number<br>    max_capacity = number<br>  }))</pre> | `[]` | no |
 | <a name="input_autoscale_read_target"></a> [autoscale\_read\_target](#input\_autoscale\_read\_target) | The target value for DynamoDB read autoscaling | `number` | `50` | no |
 | <a name="input_autoscale_read_target_index"></a> [autoscale\_read\_target\_index](#input\_autoscale\_read\_target\_index) | The target value for DynamoDB read autoscaling of the index | `number` | `null` | no |
+| <a name="input_autoscale_write_schedule"></a> [autoscale\_write\_schedule](#input\_autoscale\_write\_schedule) | Provides an DynamoDB autoscaling scheduled action resource | <pre>list(object({<br>    schedule     = string<br>    min_capacity = number<br>    max_capacity = number<br>  }))</pre> | `[]` | no |
+| <a name="input_autoscale_write_schedule_index"></a> [autoscale\_write\_schedule\_index](#input\_autoscale\_write\_schedule\_index) | Provides an DynamoDB autoscaling scheduled action resource for the index | <pre>list(object({<br>    schedule     = string<br>    min_capacity = number<br>    max_capacity = number<br>  }))</pre> | `[]` | no |
 | <a name="input_autoscale_write_target"></a> [autoscale\_write\_target](#input\_autoscale\_write\_target) | The target value for DynamoDB write autoscaling | `number` | `50` | no |
 | <a name="input_autoscale_write_target_index"></a> [autoscale\_write\_target\_index](#input\_autoscale\_write\_target\_index) | The target value for DynamoDB write autoscaling of the index | `number` | `null` | no |
 | <a name="input_context"></a> [context](#input\_context) | Single object for setting entire context at once.<br>See description of individual variables for details.<br>Leave string and numeric variables as `null` to use default value.<br>Individual variable settings (non-null) override settings in context object,<br>except for attributes, tags, and additional\_tag\_map, which are merged. | `any` | <pre>{<br>  "additional_tag_map": {},<br>  "attributes": [],<br>  "delimiter": null,<br>  "descriptor_formats": {},<br>  "enabled": true,<br>  "environment": null,<br>  "id_length_limit": null,<br>  "label_key_case": null,<br>  "label_order": [],<br>  "label_value_case": null,<br>  "labels_as_tags": [<br>    "unset"<br>  ],<br>  "name": null,<br>  "namespace": null,<br>  "regex_replace_chars": null,<br>  "stage": null,<br>  "tags": {},<br>  "tenant": null<br>}</pre> | no |
