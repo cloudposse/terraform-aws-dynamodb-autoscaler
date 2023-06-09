@@ -18,12 +18,12 @@ resource "aws_appautoscaling_target" "read_target_index" {
 
 resource "aws_appautoscaling_policy" "read_policy" {
   count       = module.this.enabled ? 1 : 0
-  name        = "DynamoDBReadCapacityUtilization:${join("", aws_appautoscaling_target.read_target.*.id)}"
+  name        = "DynamoDBReadCapacityUtilization:${join("", aws_appautoscaling_target.read_target[*].id)}"
   policy_type = "TargetTrackingScaling"
-  resource_id = join("", aws_appautoscaling_target.read_target.*.resource_id)
+  resource_id = join("", aws_appautoscaling_target.read_target[*].resource_id)
 
-  scalable_dimension = join("", aws_appautoscaling_target.read_target.*.scalable_dimension)
-  service_namespace  = join("", aws_appautoscaling_target.read_target.*.service_namespace)
+  scalable_dimension = join("", aws_appautoscaling_target.read_target[*].scalable_dimension)
+  service_namespace  = join("", aws_appautoscaling_target.read_target[*].service_namespace)
 
   target_tracking_scaling_policy_configuration {
     predefined_metric_specification {
@@ -73,12 +73,12 @@ resource "aws_appautoscaling_target" "write_target_index" {
 
 resource "aws_appautoscaling_policy" "write_policy" {
   count       = module.this.enabled ? 1 : 0
-  name        = "DynamoDBWriteCapacityUtilization:${join("", aws_appautoscaling_target.write_target.*.id)}"
+  name        = "DynamoDBWriteCapacityUtilization:${join("", aws_appautoscaling_target.write_target[*].id)}"
   policy_type = "TargetTrackingScaling"
-  resource_id = join("", aws_appautoscaling_target.write_target.*.resource_id)
+  resource_id = join("", aws_appautoscaling_target.write_target[*].resource_id)
 
-  scalable_dimension = join("", aws_appautoscaling_target.write_target.*.scalable_dimension)
-  service_namespace  = join("", aws_appautoscaling_target.write_target.*.service_namespace)
+  scalable_dimension = join("", aws_appautoscaling_target.write_target[*].scalable_dimension)
+  service_namespace  = join("", aws_appautoscaling_target.write_target[*].service_namespace)
 
   target_tracking_scaling_policy_configuration {
     predefined_metric_specification {
