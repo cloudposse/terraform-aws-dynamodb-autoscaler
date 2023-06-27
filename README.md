@@ -112,6 +112,8 @@ module "dynamodb_autoscaler" {
   autoscale_max_read_capacity  = 20
   autoscale_min_write_capacity = 5
   autoscale_max_write_capacity = 20
+  autoscale_scale_in_cooldown  = null  # defaults to AWS's default
+  autoscale_scale_out_cooldown = null  # defaults to AWS's default
 }
 ```
 
@@ -182,6 +184,8 @@ Available targets:
 | <a name="input_autoscale_min_write_capacity_index"></a> [autoscale\_min\_write\_capacity\_index](#input\_autoscale\_min\_write\_capacity\_index) | DynamoDB autoscaling min write capacity of the index | `number` | `null` | no |
 | <a name="input_autoscale_read_target"></a> [autoscale\_read\_target](#input\_autoscale\_read\_target) | The target value for DynamoDB read autoscaling | `number` | `50` | no |
 | <a name="input_autoscale_read_target_index"></a> [autoscale\_read\_target\_index](#input\_autoscale\_read\_target\_index) | The target value for DynamoDB read autoscaling of the index | `number` | `null` | no |
+| <a name="input_autoscale_scale_in_cooldown"></a> [autoscale\_scale\_in\_cooldown](#input\_autoscale\_scale\_in\_cooldown) | DynamoDB autoscaling scale in cooldown | `number` | `null` | no |
+| <a name="input_autoscale_scale_out_cooldown"></a> [autoscale\_scale\_out\_cooldown](#input\_autoscale\_scale\_out\_cooldown) | DynamoDB autoscaling scale out cooldown | `number` | `null` | no |
 | <a name="input_autoscale_write_target"></a> [autoscale\_write\_target](#input\_autoscale\_write\_target) | The target value for DynamoDB write autoscaling | `number` | `50` | no |
 | <a name="input_autoscale_write_target_index"></a> [autoscale\_write\_target\_index](#input\_autoscale\_write\_target\_index) | The target value for DynamoDB write autoscaling of the index | `number` | `null` | no |
 | <a name="input_context"></a> [context](#input\_context) | Single object for setting entire context at once.<br>See description of individual variables for details.<br>Leave string and numeric variables as `null` to use default value.<br>Individual variable settings (non-null) override settings in context object,<br>except for attributes, tags, and additional\_tag\_map, which are merged. | `any` | <pre>{<br>  "additional_tag_map": {},<br>  "attributes": [],<br>  "delimiter": null,<br>  "descriptor_formats": {},<br>  "enabled": true,<br>  "environment": null,<br>  "id_length_limit": null,<br>  "label_key_case": null,<br>  "label_order": [],<br>  "label_value_case": null,<br>  "labels_as_tags": [<br>    "unset"<br>  ],<br>  "name": null,<br>  "namespace": null,<br>  "regex_replace_chars": null,<br>  "stage": null,<br>  "tags": {},<br>  "tenant": null<br>}</pre> | no |

@@ -26,6 +26,18 @@ variable "autoscale_read_target" {
   description = "The target value for DynamoDB read autoscaling"
 }
 
+variable "autoscale_scale_in_cooldown" {
+  type        = number
+  default     = null
+  description = "DynamoDB autoscaling scale in cooldown"
+}
+
+variable "autoscale_scale_out_cooldown" {
+  type        = number
+  default     = null
+  description = "DynamoDB autoscaling scale out cooldown"
+}
+
 variable "autoscale_min_read_capacity" {
   type        = number
   default     = 5
