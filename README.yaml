@@ -66,6 +66,8 @@ usage: |-
     autoscale_max_read_capacity  = 20
     autoscale_min_write_capacity = 5
     autoscale_max_write_capacity = 20
+    autoscale_scale_in_cooldown  = null  # defaults to AWS's default
+    autoscale_scale_out_cooldown = null  # defaults to AWS's default
   }
   ```
 include:

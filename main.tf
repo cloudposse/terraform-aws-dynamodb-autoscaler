@@ -30,7 +30,9 @@ resource "aws_appautoscaling_policy" "read_policy" {
       predefined_metric_type = "DynamoDBReadCapacityUtilization"
     }
 
-    target_value = var.autoscale_read_target
+    target_value       = var.autoscale_read_target
+    scale_in_cooldown  = var.autoscale_scale_in_cooldown
+    scale_out_cooldown = var.autoscale_scale_out_cooldown
   }
 }
 
@@ -49,7 +51,9 @@ resource "aws_appautoscaling_policy" "read_policy_index" {
       predefined_metric_type = "DynamoDBReadCapacityUtilization"
     }
 
-    target_value = coalesce(var.autoscale_read_target_index, var.autoscale_read_target)
+    target_value       = coalesce(var.autoscale_read_target_index, var.autoscale_read_target)
+    scale_in_cooldown  = var.autoscale_scale_in_cooldown
+    scale_out_cooldown = var.autoscale_scale_out_cooldown
   }
 }
 
@@ -85,7 +89,9 @@ resource "aws_appautoscaling_policy" "write_policy" {
       predefined_metric_type = "DynamoDBWriteCapacityUtilization"
     }
 
-    target_value = var.autoscale_write_target
+    target_value       = var.autoscale_write_target
+    scale_in_cooldown  = var.autoscale_scale_in_cooldown
+    scale_out_cooldown = var.autoscale_scale_out_cooldown
   }
 }
 
@@ -104,6 +110,8 @@ resource "aws_appautoscaling_policy" "write_policy_index" {
       predefined_metric_type = "DynamoDBWriteCapacityUtilization"
     }
 
-    target_value = coalesce(var.autoscale_write_target_index, var.autoscale_write_target)
+    target_value       = coalesce(var.autoscale_write_target_index, var.autoscale_write_target)
+    scale_in_cooldown  = var.autoscale_scale_in_cooldown
+    scale_out_cooldown = var.autoscale_scale_out_cooldown
   }
 }
