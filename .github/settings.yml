@@ -5,3 +5,4 @@ repository:
   description: Terraform module to provision DynamoDB autoscaler
   homepage: https://cloudposse.com/accelerate
   topics: terraform, terraform-modules, aws, dynamodb, autoscaler, iops, table, dynamodb-table, hcl2
+
