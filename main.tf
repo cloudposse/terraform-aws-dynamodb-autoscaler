@@ -5,6 +5,8 @@ resource "aws_appautoscaling_target" "read_target" {
   resource_id        = "table/${var.dynamodb_table_name}"
   scalable_dimension = "dynamodb:table:ReadCapacityUnits"
   service_namespace  = "dynamodb"
+
+  tags = module.this.tags
 }
 
 resource "aws_appautoscaling_target" "read_target_index" {
@@ -14,6 +16,8 @@ resource "aws_appautoscaling_target" "read_target_index" {
   resource_id        = "table/${var.dynamodb_table_name}/index/${each.key}"
   scalable_dimension = "dynamodb:index:ReadCapacityUnits"
   service_namespace  = "dynamodb"
+
+  tags = module.this.tags
 }
 
 resource "aws_appautoscaling_policy" "read_policy" {
