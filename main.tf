@@ -68,6 +68,8 @@ resource "aws_appautoscaling_target" "write_target" {
   resource_id        = "table/${var.dynamodb_table_name}"
   scalable_dimension = "dynamodb:table:WriteCapacityUnits"
   service_namespace  = "dynamodb"
+
+  tags = module.this.tags
 }
 
 resource "aws_appautoscaling_target" "write_target_index" {
@@ -77,6 +79,8 @@ resource "aws_appautoscaling_target" "write_target_index" {
   resource_id        = "table/${var.dynamodb_table_name}/index/${each.key}"
   scalable_dimension = "dynamodb:index:WriteCapacityUnits"
   service_namespace  = "dynamodb"
+
+  tags = module.this.tags
 }
 
 resource "aws_appautoscaling_policy" "write_policy" {
